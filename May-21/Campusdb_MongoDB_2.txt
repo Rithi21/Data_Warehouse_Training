@@ -139,8 +139,7 @@ campusdb> db.enrollments.updateOne(
 
  db.enrollments.updateOne(
 ...   { studentId: 103 },
-...   { $set: { "address.city": "Mumbai", "address.state": "Mumbai" } }
-... )
+...   { $set: { "address.city": "Mumbai", "address.state": "Mumbai" } })
 
 {
   acknowledged: true,
@@ -154,8 +153,7 @@ campusdb> db.enrollments.updateOne(
 
 campusdb> db.enrollments.updateMany(
 ...   { "address.city": "Delhi" },
-...   { $set: { feesPaid: true } }
-... )
+...   { $set: { feesPaid: true } })
 
 {
   acknowledged: true,
@@ -169,8 +167,7 @@ campusdb> db.enrollments.updateMany(
 
 campusdb> db.enrollments.updateMany(
 ...   { courses: "Java" },
-...   { $pull: { courses: "Java" } }
-... )
+...   { $pull: { courses: "Java" } })
 
 {
   acknowledged: true,
