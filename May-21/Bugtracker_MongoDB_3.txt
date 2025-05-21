@@ -1,0 +1,78 @@
+1.Create a new database :
+27017> use bugtracker
+switched to db bugtracker
+
+2.Insert 3 bug reports into a bugs collection:
+
+bugtracker> db.bugs.insertMany([
+...   {
+...     title: "GUI misalignment on dashboard",
+...     reportedBy: "Rahul",
+...     status: "open",
+...     priority: "high",
+...     createdAt: new Date("2025-05-11")
+...   },
+...   {
+...     title: "Login page not working",
+...     reportedBy: "Arjun",
+...     status: "in progress",
+...     priority: "medium",
+...     createdAt: new Date("2025-05-15")
+...   },
+...   {
+...     title: "Home page image not loading",
+...     reportedBy: "Test User",
+...     status: "open",
+...     priority: "low",
+...     createdAt: new Date("2025-05-20")
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('682db429bd200a7c2e6c4bd0'),
+    '1': ObjectId('682db429bd200a7c2e6c4bd1'),
+    '2': ObjectId('682db429bd200a7c2e6c4bd2')
+  }
+}
+
+3.Query all bugs with status: "open" and priority: "high"
+
+bugtracker> db.bugs.find({
+...   status: "open", priority: "high"
+})
+
+[
+  {
+    _id: ObjectId('682db429bd200a7c2e6c4bd0'),
+    title: 'GUI misalignment on dashboard',
+    reportedBy: 'Rahul',
+    status: 'open',
+    priority: 'high',
+    createdAt: ISODate('2025-05-01T00:00:00.000Z')
+  }
+]
+
+4. Update the status of a specific bug to "closed"
+
+bugtracker> db.bugs.updateOne(
+...   { title: "Login page not working" },
+...   { $set: { status: "closed" } }
+... )
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+5. Delete the bug that was reported by "Test User."
+
+bugtracker> db.bugs.deleteOne({
+...   reportedBy: "Test User"
+... })
+
+{ acknowledged: true, deletedCount: 1 }
+bugtracker>
