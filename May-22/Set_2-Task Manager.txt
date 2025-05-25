@@ -1,0 +1,444 @@
+Set #2: Project & Task Tracker :
+
+Section 1: Basic Document Modeling & Insertion:
+
+27017> use taskmanager
+
+switched to db taskmanager
+
+taskmanager> db.users.insertMany([{
+... name:"Angela",
+... email:"an123@gmail.com",
+... role:"manager",
+... active:true
+... },
+... {
+... name: "Priya",
+...     email: "pri145@yahoo.com",
+...     role: "admin",
+...     active: false
+...   },
+...   {
+...     name: "Rahul Sharma",
+...     email: "rahul@gmail.com",
+...     role: "developer",
+...     active: true
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68333be9867dac574c6c4bd0'),
+    '1': ObjectId('68333be9867dac574c6c4bd1'),
+    '2': ObjectId('68333be9867dac574c6c4bd2')
+  }
+}
+
+
+
+taskmanager> 
+... const user1 = db.users.findOne({ name: "Angela" });
+... const user2 = db.users.findOne({ name: "Priya" });
+...
+... db.projects.insertMany([
+...   {
+...     title: "Project Instant Delivery",
+...     description: "App for food delivery",
+...     startDate: new Date(),  
+...     status: "active",
+...     createdBy: {
+...       _id: user1._id,
+...       name: user1.name
+...     }
+...   },
+...   {
+...     title: "Project AI",
+...     description: "AI Based Object Detection system",
+...     startDate: new Date("2025-03-10"), 
+...     status: "completed",
+...     createdBy: {
+...       _id: user2._id,
+...       name: user2.name
+...     }
+...   }
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68333d06867dac574c6c4bd3'),
+    '1': ObjectId('68333d06867dac574c6c4bd4')
+  }
+}
+
+
+
+taskmanager> const project1 = db.projects.findOne({ title: "Project Instant Delivery" });
+... const project2 = db.projects.findOne({ title: "Project AI" });
+...
+... const dev = db.users.findOne({ role: "developer" });
+...
+... db.tasks.insertMany([
+...   {
+...     title: "Design Schema",
+...     assignedTo: user1._id,
+...     projectId: project1._id,
+...     priority: "high",
+...     dueDate: new Date("2025-06-10"),
+...     status: "in-progress"
+...   },
+...   {
+...     title: "Build API",
+...     assignedTo: user2._id,
+...     projectId: project1._id,
+...     priority: "medium",
+...     dueDate: new Date("2025-06-20"),
+...     status: "pending"
+...   },
+...   {
+...     title: "Frontend UI",
+...     assignedTo: dev._id,
+...     projectId: project1._id,
+...     priority: "high",
+...     dueDate: new Date("2025-06-02"),
+...     status: "pending"
+...   },
+...   {
+...     title: "Testing",
+...     assignedTo: user2._id,
+...     projectId: project2._id,
+...     priority: "low",
+...     dueDate: new Date("2025-05-27"),
+...     status: "completed"
+...   },
+...   {
+...     title: "Deployment",
+...     assignedTo: user1._id,
+...     projectId: project2._id,
+...     priority: "high",
+...     dueDate: new Date("2025-06-25"),
+...     status: "in-progress"
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68333dd2867dac574c6c4bda'),
+    '1': ObjectId('68333dd2867dac574c6c4bdb'),
+    '2': ObjectId('68333dd2867dac574c6c4bdc'),
+    '3': ObjectId('68333dd2867dac574c6c4bdd'),
+    '4': ObjectId('68333dd2867dac574c6c4bde')
+  }
+}
+
+ Section 2: Filtering & Querying:
+
+taskmanager> db.tasks.find({
+...   priority: "high",
+...   status: { $ne: "completed" }
+... })
+...
+[
+  {
+    _id: ObjectId('68333dd2867dac574c6c4bda'),
+    title: 'Design Schema',
+    assignedTo: ObjectId('68333be9867dac574c6c4bd0'),
+    projectId: ObjectId('68333d06867dac574c6c4bd3'),
+    priority: 'high',
+    dueDate: ISODate('2025-06-10T00:00:00.000Z'),
+    status: 'in-progress'
+  },
+  {
+    _id: ObjectId('68333dd2867dac574c6c4bdc'),
+    title: 'Frontend UI',
+    assignedTo: ObjectId('68333be9867dac574c6c4bd2'),
+    projectId: ObjectId('68333d06867dac574c6c4bd3'),
+    priority: 'high',
+    dueDate: ISODate('2025-06-02T00:00:00.000Z'),
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('68333dd2867dac574c6c4bde'),
+    title: 'Deployment',
+    assignedTo: ObjectId('68333be9867dac574c6c4bd0'),
+    projectId: ObjectId('68333d06867dac574c6c4bd4'),
+    priority: 'high',
+    dueDate: ISODate('2025-06-25T00:00:00.000Z'),
+    status: 'in-progress'
+  }
+]
+
+
+
+
+taskmanager> db.users.find({
+...   role: "developer",
+...   active: true
+... })
+...
+[
+  {
+    _id: ObjectId('68333be9867dac574c6c4bd2'),
+    name: 'Rahul Sharma',
+    email: 'rahul@gmail.com',
+    role: 'developer',
+    active: true
+  }
+]
+
+
+taskmanager> const rahul = db.users.findOne({ email: "rahul@gmail.com" });
+...
+... db.tasks.find({
+...   assignedTo: rahul._id
+... })
+[
+  {
+    _id: ObjectId('68333dd2867dac574c6c4bdc'),
+    title: 'Frontend UI',
+    assignedTo: ObjectId('68333be9867dac574c6c4bd2'),
+    projectId: ObjectId('68333d06867dac574c6c4bd3'),
+    priority: 'high',
+    dueDate: ISODate('2025-06-02T00:00:00.000Z'),
+    status: 'pending'
+  }
+]
+
+
+
+taskmanager> const thirtyDaysAgo = new Date();
+... thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+...
+... db.projects.find({
+...   startDate: { $gte: thirtyDaysAgo }
+... })
+...
+[
+  {
+    _id: ObjectId('68333d06867dac574c6c4bd3'),
+    title: 'Project Instant Delivery',
+    description: 'App for food delivery',
+    startDate: ISODate('2025-05-25T15:53:42.415Z'),
+    status: 'active',
+    createdBy: { _id: ObjectId('68333be9867dac574c6c4bd0'), name: 'Angela' }
+  }
+]
+
+ Section 3: Update Operations:
+
+
+taskmanager> db.tasks.updateOne(
+...   { title: "Design Schema" },
+...   { $set: { status: "completed" } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+taskmanager> db.users.updateOne(
+...   { name: "Angela" },
+...   { $set: { role: "teamLead" } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+taskmanager> db.tasks.updateOne(
+...   { title: "Frontend UI" },
+...   { $set: { tags: ["urgent", "frontend"] } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+ Section 4: Array and Subdocument Operations:
+
+taskmanager> db.tasks.updateOne(
+...   { title: "Frontend UI" },
+...   { $addToSet: { tags: "UI" } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+taskmanager> db.tasks.updateOne(
+...   { title: "Frontend UI" },
+...   { $pull: { tags: "frontend" } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+taskmanager> db.projects.updateOne(
+...   { title: "Project Instant Delivery" },
+...   { $inc: { progress: 10 } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+Section 5: Aggregation & Lookup 
+15. Use $lookup to join tasks with users and show task title + assignee name 
+
+taskmanager> db.tasks.aggregate([
+...   {
+...     $lookup: {
+...       from: "users",
+...       localField: "assignedTo",
+...       foreignField: "_id",
+...       as: "assignee"
+...     }
+...   },
+...   {
+...     $unwind: "$assignee"
+...   },
+...   {
+...     $project: {
+...       _id: 0,
+...       title: 1,
+...       assigneeName: "$assignee.name"
+...     }
+...   }
+... ])
+...
+[
+  { title: 'Design Schema', assigneeName: 'Angela' },
+  { title: 'Build API', assigneeName: 'Priya' },
+  { title: 'Frontend UI', assigneeName: 'Rahul Sharma' },
+  { title: 'Testing', assigneeName: 'Priya' },
+  { title: 'Deployment', assigneeName: 'Angela' }
+]
+
+16.Use $lookup to join tasks with projects , and filter tasks where project status = active:
+taskmanager> db.tasks.aggregate([
+...   {
+...     $lookup: {
+...       from: "projects",
+...       localField: "projectId",
+...       foreignField: "_id",
+...       as: "project"
+...     }
+...   },
+...   {
+...     $unwind: "$project"
+...   },
+...   {
+...     $match: {
+...       "project.status": "active"
+...     }
+...   },
+...   {
+...     $project: {
+...       _id: 0,
+...       title: 1,
+...       projectTitle: "$project.title",
+...       projectStatus: "$project.status"
+...     }
+...   }
+... ])
+...
+[
+  {
+    title: 'Design Schema',
+    projectTitle: 'Project Instant Delivery',
+    projectStatus: 'active'
+  },
+  {
+    title: 'Build API',
+    projectTitle: 'Project Instant Delivery',
+    projectStatus: 'active'
+  },
+  {
+    title: 'Frontend UI',
+    projectTitle: 'Project Instant Delivery',
+    projectStatus: 'active'
+  }
+]
+
+17.Use $group to get count of tasks per status:
+
+taskmanager> db.tasks.aggregate([
+...   {
+...     $group: {
+...       _id: "$status",
+...       count: { $sum: 1 }
+...     }
+...   }
+... ])
+...
+[
+  { _id: 'completed', count: 2 },
+  { _id: 'pending', count: 2 },
+  { _id: 'in-progress', count: 1 }
+]
+
+18.Use $match , $sort , and $limit to get top 3 soonest due tasks:
+
+taskmanager> db.tasks.aggregate([
+...   {
+...     $match: {
+...       dueDate: { $ne: null }
+...     }
+...   },
+...   {
+...     $sort: {
+...       dueDate: 1
+...     }
+...   },
+...   {
+...     $limit: 3
+...   },
+...   {
+...     $project: {
+...       _id: 0,
+...       title: 1,
+...       dueDate: 1
+...     }
+...   }
+... ])
+...
+[
+  { title: 'Testing', dueDate: ISODate('2025-05-27T00:00:00.000Z') },
+  {
+    title: 'Frontend UI',
+    dueDate: ISODate('2025-06-02T00:00:00.000Z')
+  },
+  {
+    title: 'Design Schema',
+    dueDate: ISODate('2025-06-10T00:00:00.000Z')
+  }
+]
