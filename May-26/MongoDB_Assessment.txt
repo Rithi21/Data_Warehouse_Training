@@ -1,0 +1,1440 @@
+test> use studentRecords
+switched to db studentRecords
+
+CRUD Operations:
+
+1. Insert a new student record with embedded courses and address data.
+
+studentRecords> db.students.insertMany([{
+... "name": "Ayaan Khan",
+... "age": 21,
+... "gender": "Male",
+... "department": "Computer Science",
+... "courses": [
+... { "name": "MongoDB", "score": 85 },
+... { "name": "Python", "score": 90 }
+... ],
+... "address": {
+... "city": "Hyderabad",
+... "state": "Telangana",
+... "pincode": 500032
+... },
+... "enrollmentDate": ISODate("2024-08-01T00:00:00Z"),
+... "isActive": true
+... },
+...  {
+...     "name": "Sara Khan",
+...     "age": 22,
+...     "gender": "Female",
+...     "department": "Mathematics",
+...     "courses": [
+...       { "name": "Python", "score": 67 },
+...       { "name": "React.js", "score": 79 }
+...     ],
+...     "address": {
+...       "city": "Delhi",
+...       "state": "Delhi",
+...       "pincode": 300971
+...     },
+...     "enrollmentDate": ISODate("2024-07-25T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "John Doe",
+...     "age": 23,
+...     "gender": "Male",
+...     "department": "Mechanical",
+...     "courses": [
+...       { "name": "Mathematics", "score": 80 },
+...       { "name": "Python", "score": 65 }
+...     ],
+...     "address": {
+...       "city": "Chennai",
+...       "state": "Tamil Nadu",
+...       "pincode": 600001
+...     },
+...     "enrollmentDate": ISODate("2024-01-10T00:00:00Z"),
+...     "isActive": false
+...   },
+...   {
+...     "name": "Priya",
+...     "age": 20,
+...     "gender": "Female",
+...     "department": "Computer Science",
+...     "courses": [
+...       { "name": "MongoDB", "score": 88 },
+...       { "name": "Python", "score": 91 }
+...     ],
+...     "address": {
+...       "city": "Hyderabad",
+...       "state": "Telangana",
+...       "pincode": 500012
+...     },
+...     "enrollmentDate": ISODate("2024-03-12T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "Ravi Kumar",
+...     "age": 19,
+...     "gender": "Male",
+...     "department": "Mathematics",
+...     "courses": [
+...       { "name": "Calculus", "score": 72 },
+...       { "name": "Algebra", "score": 80 }
+...     ],
+...     "address": {
+...       "city": "Bangalore",
+...       "state": "Karnataka",
+...       "pincode": 560001
+...     },
+...     "enrollmentDate": ISODate("2024-05-30T00:00:00Z"),
+...     "isActive": false
+...   },
+...   {
+...     "name": "Meena Raj",
+...     "age": 21,
+...     "gender": "Female",
+...     "department": "Electronics",
+...     "courses": [
+...       { "name": "Circuits", "score": 76 },
+...       { "name": "Python", "score": 68 }
+...     ],
+...     "address": {
+...       "city": "Kolkata",
+...       "state": "West Bengal",
+...       "pincode": 700001
+...     },
+...     "enrollmentDate": ISODate("2024-04-10T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "Arjun Mehta",
+...     "age": 24,
+...     "gender": "Male",
+...     "department": "Computer Science",
+...     "courses": [
+...       { "name": "Node.js", "score": 83 },
+...       { "name": "MongoDB", "score": 91 }
+...     ],
+...     "address": {
+...       "city": "Mumbai",
+...       "state": "Maharashtra",
+...       "pincode": 400001
+...     },
+...     "enrollmentDate": ISODate("2024-06-05T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "Sneha",
+...     "age": 22,
+...     "gender": "Female",
+...     "department": "Computer Science",
+...     "courses": [
+...       { "name": "MongoDB", "score": 79 },
+...       { "name": "Python", "score": 70 }
+...     ],
+...     "address": {
+...       "city": "Pune",
+...       "state": "Maharashtra",
+...       "pincode": 411001
+...     },
+...     "enrollmentDate": ISODate("2024-02-18T00:00:00Z"),
+...     "isActive": false
+...   },
+...   {
+...     "name": "Varun",
+...     "age": 21,
+...     "gender": "Male",
+...     "department": "Mathematics",
+...     "courses": [
+...       { "name": "Statistics", "score": 87 },
+...       { "name": "Calculas", "score": 83 }
+...     ],
+...     "address": {
+...       "city": "Hyderabad",
+...       "state": "Telangana",
+...       "pincode": 500030
+...     },
+...     "enrollmentDate": ISODate("2024-08-10T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "Divya",
+...     "age": 20,
+...     "gender": "Female",
+...     "department": "Computer Science",
+...     "courses": [
+...       { "name": "Python", "score": 94 },
+...       { "name": "Java", "score": 78 }
+...     ],
+...     "address": {
+...       "city": "Hyderabad",
+...       "state": "Telangana",
+...       "pincode": 500035
+...     },
+...     "enrollmentDate": ISODate("2024-07-01T00:00:00Z"),
+...     "isActive": true
+...   },
+...   {
+...     "name": "Nikhil",
+...     "age": 23,
+...     "gender": "Male",
+...     "department": "Electronics",
+...     "courses": [
+...       { "name": "Microprocessors", "score": 82 },
+...       { "name": "Circuit Design", "score": 88 }
+...     ],
+...     "address": {
+...       "city": "Bangalore",
+...       "state": "Karnataka",
+...       "pincode": 560010
+...     },
+...     "enrollmentDate": ISODate("2025-01-20T00:00:00Z"),
+...     "isActive": true
+...   },
+...  {
+...   name: "Rohini",
+...   age: 18,
+...   gender: "Female",
+...   department: "Mechanical",
+...   courses: [
+...     { name: "Machine Design", score: 75 },
+...     { name: "Thermodynamics", score: 70 }
+...   ],
+...   address: {
+...     city: "Bangalore",
+...     state: "Karnataka",
+...     pincode: 560010
+...   },
+...   enrollmentDate: ISODate("2025-02-01T00:00:00Z"),
+...   isActive: false
+... })
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    '1': ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    '2': ObjectId('6833ea1dc85ff01e9d6c4bd2'),
+    '3': ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    '4': ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    '5': ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    '6': ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    '7': ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    '8': ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    '9': ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    '10': ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    '11': ObjectId('6833ed5cc85ff01e9d6c4bdb')
+  }
+}
+
+
+2. Update score for a course ( Python ) inside the courses array.
+
+studentRecords> db.students.updateMany(
+...   { "courses.name": "Python" },
+...   { $inc: { "courses.$[elem].score": 5 } },
+...   { arrayFilters: [ { "elem.name": "Python" } ] })
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 7,
+  modifiedCount: 7,
+  upsertedCount: 0
+}
+
+
+3. Delete a student whose name is "John Doe".
+
+studentRecords> db.students.deleteOne({ name: "John Doe" })
+
+{ acknowledged: true, deletedCount: 1 }
+
+
+4. Find all students in the "Computer Science" department.
+
+studentRecords> db.students.find({ department:"Computer Science"})
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 79 }, { name: 'Python', score: 75 } ],
+    address: { city: 'Pune', state: 'Maharashtra', pincode: 411001 },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+Query Operators:
+
+5. Find students where age is greater than 20
+
+studentRecords> db.students.find({ age:{$gt:20}})
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    age: 22,
+    gender: 'Female',
+    department: 'Mathematics',
+    courses: [ { name: 'Python', score: 67 }, { name: 'React.js', score: 79 } ],
+    address: { city: 'Delhi', state: 'Delhi', pincode: 300971 },
+    enrollmentDate: ISODate('2024-07-25T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    age: 21,
+    gender: 'Female',
+    department: 'Electronics',
+    courses: [ { name: 'Circuits', score: 76 }, { name: 'Python', score: 68 } ],
+    address: { city: 'Kolkata', state: 'West Bengal', pincode: 700001 },
+    enrollmentDate: ISODate('2024-04-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 79 }, { name: 'Python', score: 75 } ],
+    address: { city: 'Pune', state: 'Maharashtra', pincode: 411001 },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    age: 21,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [
+      { name: 'Statistics', score: 87 },
+      { name: 'Calculas', score: 83 }
+    ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500030 },
+    enrollmentDate: ISODate('2024-08-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    age: 23,
+    gender: 'Male',
+    department: 'Electronics',
+    courses: [
+      { name: 'Microprocessors', score: 82 },
+      { name: 'Circuit Design', score: 88 }
+    ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560010 },
+    enrollmentDate: ISODate('2025-01-20T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+
+6. Find students enrolled between two dates.
+
+studentRecords> db.students.find({
+...   enrollmentDate: { $gte: ISODate("2024-02-01T00:00:00Z"),
+...     $lte: ISODate("2024-07-30T00:00:00Z")
+...   }
+... })
+
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    age: 22,
+    gender: 'Female',
+    department: 'Mathematics',
+    courses: [ { name: 'Python', score: 67 }, { name: 'React.js', score: 79 } ],
+    address: { city: 'Delhi', state: 'Delhi', pincode: 300971 },
+    enrollmentDate: ISODate('2024-07-25T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    age: 19,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [ { name: 'Calculus', score: 72 }, { name: 'Algebra', score: 80 } ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560001 },
+    enrollmentDate: ISODate('2024-05-30T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    age: 21,
+    gender: 'Female',
+    department: 'Electronics',
+    courses: [ { name: 'Circuits', score: 76 }, { name: 'Python', score: 68 } ],
+    address: { city: 'Kolkata', state: 'West Bengal', pincode: 700001 },
+    enrollmentDate: ISODate('2024-04-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 79 }, { name: 'Python', score: 75 } ],
+    address: { city: 'Pune', state: 'Maharashtra', pincode: 411001 },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+.
+7. Find students who are either in "Computer Science" or "Mathematics".
+
+studentRecords> db.students.find({
+...   department: { $in:["Computer Science", "Mathematics"] }
+... })
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    age: 22,
+    gender: 'Female',
+    department: 'Mathematics',
+    courses: [ { name: 'Python', score: 67 }, { name: 'React.js', score: 79 } ],
+    address: { city: 'Delhi', state: 'Delhi', pincode: 300971 },
+    enrollmentDate: ISODate('2024-07-25T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    age: 19,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [ { name: 'Calculus', score: 72 }, { name: 'Algebra', score: 80 } ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560001 },
+    enrollmentDate: ISODate('2024-05-30T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 79 }, { name: 'Python', score: 75 } ],
+    address: { city: 'Pune', state: 'Maharashtra', pincode: 411001 },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    age: 21,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [
+      { name: 'Statistics', score: 87 },
+      { name: 'Calculas', score: 83 }
+    ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500030 },
+    enrollmentDate: ISODate('2024-08-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+8. Find students not in the "Mechanical" department.
+
+studentRecords> db.students.find({
+...   department: { $ne: "Mechanical" }
+... })
+
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    age: 22,
+    gender: 'Female',
+    department: 'Mathematics',
+    courses: [ { name: 'Python', score: 67 }, { name: 'React.js', score: 79 } ],
+    address: { city: 'Delhi', state: 'Delhi', pincode: 300971 },
+    enrollmentDate: ISODate('2024-07-25T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    age: 19,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [ { name: 'Calculus', score: 72 }, { name: 'Algebra', score: 80 } ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560001 },
+    enrollmentDate: ISODate('2024-05-30T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    age: 21,
+    gender: 'Female',
+    department: 'Electronics',
+    courses: [ { name: 'Circuits', score: 76 }, { name: 'Python', score: 68 } ],
+    address: { city: 'Kolkata', state: 'West Bengal', pincode: 700001 },
+    enrollmentDate: ISODate('2024-04-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 79 }, { name: 'Python', score: 75 } ],
+    address: { city: 'Pune', state: 'Maharashtra', pincode: 411001 },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    age: 21,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [
+      { name: 'Statistics', score: 87 },
+      { name: 'Calculas', score: 83 }
+    ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500030 },
+    enrollmentDate: ISODate('2024-08-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    age: 23,
+    gender: 'Male',
+    department: 'Electronics',
+    courses: [
+      { name: 'Microprocessors', score: 82 },
+      { name: 'Circuit Design', score: 88 }
+    ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560010 },
+    enrollmentDate: ISODate('2025-01-20T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+9. Find students whose courses.score is greater than 80.
+
+
+studentRecords> db.students.find({
+...   "courses.score": { $gt: 80 }
+... })
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    age: 24,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Node.js', score: 83 }, { name: 'MongoDB', score: 91 } ],
+    address: { city: 'Mumbai', state: 'Maharashtra', pincode: 400001 },
+    enrollmentDate: ISODate('2024-06-05T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    age: 21,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [
+      { name: 'Statistics', score: 87 },
+      { name: 'Calculas', score: 83 }
+    ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500030 },
+    enrollmentDate: ISODate('2024-08-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    age: 23,
+    gender: 'Male',
+    department: 'Electronics',
+    courses: [
+      { name: 'Microprocessors', score: 82 },
+      { name: 'Circuit Design', score: 88 }
+    ],
+    address: { city: 'Bangalore', state: 'Karnataka', pincode: 560010 },
+    enrollmentDate: ISODate('2025-01-20T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+
+Aggregation Framework:
+
+10. Group by department and count students.
+
+ db.students.aggregate([
+...   {
+...     $group: {
+...       _id: "$department",
+...       studentCount: { $sum: 1 }
+...     }
+... }
+... ])
+[
+  { _id: 'Mathematics', studentCount: 3 },
+  { _id: 'Electronics', studentCount: 2 },
+  { _id: 'Mechanical', studentCount: 1 },
+  { _id: 'Computer Science', studentCount: 5 }
+]
+
+11. Calculate the average age of students per department.
+
+studentRecords> db.students.aggregate([
+...   {
+...     $group: {
+...       _id: "$department",
+...       averageAge: { $avg: "$age" }
+...     }
+... }
+... ])
+[
+  { _id: 'Mathematics', averageAge: 20.666666666666668 },
+  { _id: 'Electronics', averageAge: 22 },
+  { _id: 'Mechanical', averageAge: 18 },
+  { _id: 'Computer Science', averageAge: 21.4 }
+]
+
+12. Sort students by total course score (computed using $sum inside $project)
+
+studentRecords> db.students.aggregate([
+...   {
+...     $project: {
+...       name: 1,
+...       department: 1,
+...       totalScore: { $sum: "$courses.score" }
+...     }
+... },
+...   {
+...     $sort: { totalScore: -1 }
+...   }
+... ])
+
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    department: 'Computer Science',
+    totalScore: 184
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    department: 'Computer Science',
+    totalScore: 180
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    department: 'Computer Science',
+    totalScore: 177
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    department: 'Computer Science',
+    totalScore: 174
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    department: 'Mathematics',
+    totalScore: 170
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    department: 'Electronics',
+    totalScore: 170
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    department: 'Computer Science',
+    totalScore: 154
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    department: 'Mathematics',
+    totalScore: 152
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    department: 'Mathematics',
+    totalScore: 146
+  },
+  {
+    _id: ObjectId('6833ed5cc85ff01e9d6c4bdb'),
+    name: 'Rohini',
+    department: 'Mechanical',
+    totalScore: 145
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    department: 'Electronics',
+    totalScore: 144
+  }
+]
+
+13. Filter only active students before aggregation.
+
+studentRecords> db.students.aggregate([
+...   { $match: { isActive: true } },
+...   {
+...     $group: {
+...       _id: "$department",
+...       activeStudentCount: { $sum: 1 }
+...     }
+... }
+... ])
+[
+  { _id: 'Electronics', activeStudentCount: 2 },
+  { _id: 'Computer Science', activeStudentCount: 4 },
+  { _id: 'Mathematics', activeStudentCount: 2 }
+]
+
+14. Group and list unique cities from the address field.
+
+studentRecords> db.students.aggregate([
+...   {
+...     $group: {
+...       _id: null,
+...       uniqueCities: { $addToSet: "$address.city" }
+...     }
+...   },
+...   {
+...     $project: { _id: 0, uniqueCities: 1 }
+...   }
+... ])
+...
+[
+  {
+    uniqueCities: [ 'Mumbai', 'Delhi', 'Kolkata', 'Pune', 'Bangalore', 'Hyderabad' ]
+  }
+]
+
+Projections:
+
+15. Find students with only name , department , and city fields shown.
+
+studentRecords> db.students.find({},{name:1,department:1,"address.city":1})
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    department: 'Mathematics',
+    address: { city: 'Delhi' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    department: 'Mathematics',
+    address: { city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    department: 'Electronics',
+    address: { city: 'Kolkata' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    department: 'Computer Science',
+    address: { city: 'Mumbai' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    department: 'Computer Science',
+    address: { city: 'Pune' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    department: 'Mathematics',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    department: 'Electronics',
+    address: { city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('6833ed5cc85ff01e9d6c4bdb'),
+    name: 'Rohini',
+    department: 'Mechanical',
+    address: { city: 'Bangalore' }
+  }
+]
+
+16. Exclude the _id field from output.
+
+studentRecords> db.students.find({},{_id: 0,name:1,department:1,"address.city":1})
+[
+  {
+    name: 'Ayaan Khan',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    name: 'Sara Khan',
+    department: 'Mathematics',
+    address: { city: 'Delhi' }
+  },
+  {
+    name: 'Priya',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    name: 'Ravi Kumar',
+    department: 'Mathematics',
+    address: { city: 'Bangalore' }
+  },
+  {
+    name: 'Meena Raj',
+    department: 'Electronics',
+    address: { city: 'Kolkata' }
+  },
+  {
+    name: 'Arjun Mehta',
+    department: 'Computer Science',
+    address: { city: 'Mumbai' }
+  },
+  {
+    name: 'Sneha',
+    department: 'Computer Science',
+    address: { city: 'Pune' }
+  },
+  {
+    name: 'Varun',
+    department: 'Mathematics',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    name: 'Divya',
+    department: 'Computer Science',
+    address: { city: 'Hyderabad' }
+  },
+  {
+    name: 'Nikhil',
+    department: 'Electronics',
+    address: { city: 'Bangalore' }
+  },
+  {
+    name: 'Rohini',
+    department: 'Mechanical',
+    address: { city: 'Bangalore' }
+  }
+]
+
+17. Show each student's name and total score using $project.
+
+studentRecords> db.students.aggregate([
+...   {
+...     $project: {
+...       name: 1,
+...       totalScore: { $sum: "$courses.score" }
+...     }
+... }
+... ])
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    totalScore: 180
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd1'),
+    name: 'Sara Khan',
+    totalScore: 146
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    totalScore: 184
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd4'),
+    name: 'Ravi Kumar',
+    totalScore: 152
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd5'),
+    name: 'Meena Raj',
+    totalScore: 144
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd6'),
+    name: 'Arjun Mehta',
+    totalScore: 174
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    totalScore: 154
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    totalScore: 170
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    totalScore: 177
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bda'),
+    name: 'Nikhil',
+    totalScore: 170
+  },
+  {
+    _id: ObjectId('6833ed5cc85ff01e9d6c4bdb'),
+    name: 'Rohini',
+    totalScore: 145
+  }
+]
+
+Embedded Documents:
+
+18. Query students where address.city = "Hyderabad" .
+
+studentRecords> db.students.find({ "address.city": "Hyderabad" })
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 85 }, { name: 'Python', score: 95 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500032 },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd3'),
+    name: 'Priya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'MongoDB', score: 88 }, { name: 'Python', score: 96 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500012 },
+    enrollmentDate: ISODate('2024-03-12T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd8'),
+    name: 'Varun',
+    age: 21,
+    gender: 'Male',
+    department: 'Mathematics',
+    courses: [
+      { name: 'Statistics', score: 87 },
+      { name: 'Calculas', score: 83 }
+    ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500030 },
+    enrollmentDate: ISODate('2024-08-10T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 99 }, { name: 'Java', score: 78 } ],
+    address: { city: 'Hyderabad', state: 'Telangana', pincode: 500035 },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+
+19. Update address.pincode for a student.
+
+studentRecords> db.students.updateOne(
+...   { name: "Ayaan Khan" },
+...   { $set: { "address.pincode": 500060 } }
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+20. Add a new field landmark to all address objects:
+
+studentRecords> db.students.updateMany(
+...   {},
+...   { $set: { "address.landmark": null } }
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+}
+
+Array Operations
+
+21. Add a new course "Node.js" to a student's courses array:
+
+studentRecords> db.students.updateOne(
+...   { name: "Priya" },
+...   {
+...     $push: {
+...       courses: { name: "Node.js", score: 85 }
+...     }
+... }
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+22. Remove a course by name "MongoDB" from the array.
+
+studentRecords> db.students.updateMany(
+...   {},{
+...     $pull: {
+...       courses: { name: "MongoDB" }
+...     }
+...   }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+
+
+23. Find students who have enrolled in both Python and MongoDB:
+
+Inserted new records:
+
+studentRecords> db.students.updateOne(
+...   { name: "Divya" },
+...   {
+...     $push: {
+...       courses: { name: "MongoDB", score: 89 }
+...     }
+...   }
+... );
+...
+... db.students.updateOne(
+...   { name: "Sneha" },
+...   {
+...     $push: {
+...       courses: { name: "MongoDB", score: 75 }
+...     }
+...   }
+... );
+...
+... db.students.updateOne(
+...   { name: "Ayaan Khan" },
+...   {
+...     $push: {
+...       courses: { name: "MongoDB", score: 85 }
+...     }
+...   }
+... );
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+Query:
+
+studentRecords> db.students.find({
+...   $and: [
+...     { "courses.name": "Python" },
+...     { "courses.name": "MongoDB" }
+...   ]
+... })
+...
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 95 }, { name: 'MongoDB', score: 85 } ],
+    address: {
+      city: 'Hyderabad',
+      state: 'Telangana',
+      pincode: 500060,
+      landmark: null
+    },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd7'),
+    name: 'Sneha',
+    age: 22,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 75 }, { name: 'MongoDB', score: 75 } ],
+    address: {
+      city: 'Pune',
+      state: 'Maharashtra',
+      pincode: 411001,
+      landmark: null
+    },
+    enrollmentDate: ISODate('2024-02-18T00:00:00.000Z'),
+    isActive: false
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [
+      { name: 'Python', score: 99 },
+      { name: 'Java', score: 78 },
+      { name: 'MongoDB', score: 89 }
+    ],
+    address: {
+      city: 'Hyderabad',
+      state: 'Telangana',
+      pincode: 500035,
+      landmark: null
+    },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
+
+24. Use $elemMatch to query students where score in MongoDB > 80
+
+studentRecords> db.students.find({
+...   courses: {
+...     $elemMatch: { name: "MongoDB", score: { $gt: 80 } }
+...   }
+... })
+...
+[
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd0'),
+    name: 'Ayaan Khan',
+    age: 21,
+    gender: 'Male',
+    department: 'Computer Science',
+    courses: [ { name: 'Python', score: 95 }, { name: 'MongoDB', score: 85 } ],
+    address: {
+      city: 'Hyderabad',
+      state: 'Telangana',
+      pincode: 500060,
+      landmark: null
+    },
+    enrollmentDate: ISODate('2024-08-01T00:00:00.000Z'),
+    isActive: true
+  },
+  {
+    _id: ObjectId('6833ea1dc85ff01e9d6c4bd9'),
+    name: 'Divya',
+    age: 20,
+    gender: 'Female',
+    department: 'Computer Science',
+    courses: [
+      { name: 'Python', score: 99 },
+      { name: 'Java', score: 78 },
+      { name: 'MongoDB', score: 89 }
+    ],
+    address: {
+      city: 'Hyderabad',
+      state: 'Telangana',
+      pincode: 500035,
+      landmark: null
+    },
+    enrollmentDate: ISODate('2024-07-01T00:00:00.000Z'),
+    isActive: true
+  }
+]
+
